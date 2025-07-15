@@ -45,7 +45,7 @@ def calculate_trajectory(initial_velocity, angle, weather_data=None, latitude=No
         A list of tuples, where each tuple contains the x and y coordinates of the projectile at a given time.
     """
     g = 9.81
-
+    
     if weather_data:
         # Adjust for wind
         wind_speed = weather_data['wind']['speed']

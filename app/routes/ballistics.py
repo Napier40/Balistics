@@ -11,7 +11,7 @@ def calculate():
     use_weather = request.form.get('use_weather')
     latitude = float(request.form.get('latitude', 0))
     spin_rate = float(request.form.get('spin_rate', 0))
-
+    
     weather_data = None
     if use_weather:
         lat = float(request.form['lat'])
