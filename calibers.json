@@ -1,0 +1,162 @@
+[
+    {
+        "caliber": ".338 Lapua Magnum",
+        "role": "Long-range sniper/competition",
+        "muzzle_velocity": {
+            "min": 915,
+            "max": 1000
+        },
+        "bullet_weight": {
+            "min": 250,
+            "max": 300
+        },
+        "bc": {
+            "g1": 0.75,
+            "g7": 0.34
+        }
+    },
+    {
+        "caliber": ".375 CheyTac",
+        "role": "Ultra-long-range sniper (>2 mi)",
+        "muzzle_velocity": {
+            "min": 895,
+            "max": 915
+        },
+        "bullet_weight": {
+            "min": 350,
+            "max": 400
+        },
+        "bc": {
+            "g1": 0.99,
+            "g7": 0.38
+        }
+    },
+    {
+        "caliber": ".300 Norma Magnum",
+        "role": "SOCOM sniper standard (Mk22 ASR)",
+        "muzzle_velocity": {
+            "min": 915,
+            "max": 960
+        },
+        "bullet_weight": {
+            "min": 220,
+            "max": 230
+        },
+        "bc": {
+            "g1": 0.78,
+            "g7": 0.36
+        }
+    },
+    {
+        "caliber": ".50 BMG",
+        "role": "Heavy military sniper platform",
+        "muzzle_velocity": {
+            "min": 850,
+            "max": 890
+        },
+        "bullet_weight": {
+            "min": 647,
+            "max": 800
+        },
+        "bc": {
+            "g1": 1.05,
+            "g7": 0.6
+        }
+    },
+    {
+        "caliber": "7.62x51mm NATO",
+        "role": "Standard military marksman round",
+        "muzzle_velocity": {
+            "min": 820,
+            "max": 850
+        },
+        "bullet_weight": {
+            "min": 147,
+            "max": 175
+        },
+        "bc": {
+            "g1": 0.44,
+            "g7": 0.21
+        }
+    },
+    {
+        "caliber": "5.56x45mm NATO",
+        "role": "Infantry standard issue",
+        "muzzle_velocity": {
+            "min": 910,
+            "max": 940
+        },
+        "bullet_weight": {
+            "min": 55,
+            "max": 77
+        },
+        "bc": {
+            "g1": 0.27,
+            "g7": 0.12
+        }
+    },
+    {
+        "caliber": "6.5 Creedmoor",
+        "role": "Military & civilian precision",
+        "muzzle_velocity": {
+            "min": 820,
+            "max": 880
+        },
+        "bullet_weight": {
+            "min": 120,
+            "max": 147
+        },
+        "bc": {
+            "g1": 0.55,
+            "g7": 0.28
+        }
+    },
+    {
+        "caliber": ".300 Win Mag",
+        "role": "Military sniper (USMC M40A5)",
+        "muzzle_velocity": {
+            "min": 880,
+            "max": 950
+        },
+        "bullet_weight": {
+            "min": 180,
+            "max": 220
+        },
+        "bc": {
+            "g1": 0.62,
+            "g7": 0.3
+        }
+    },
+    {
+        "caliber": ".308 Winchester",
+        "role": "Civilian & military marksman",
+        "muzzle_velocity": {
+            "min": 820,
+            "max": 850
+        },
+        "bullet_weight": {
+            "min": 155,
+            "max": 175
+        },
+        "bc": {
+            "g1": 0.47,
+            "g7": 0.23
+        }
+    },
+    {
+        "caliber": ".260 Remington",
+        "role": "Precision variant",
+        "muzzle_velocity": {
+            "min": 830,
+            "max": 860
+        },
+        "bullet_weight": {
+            "min": 139,
+            "max": 142
+        },
+        "bc": {
+            "g1": 0.56,
+            "g7": 0.26
+        }
+    }
+]

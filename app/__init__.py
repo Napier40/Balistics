@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -11,6 +12,12 @@ db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
+calibers = []
+
+def load_calibers():
+    global calibers
+    with open('calibers.json') as f:
+        calibers = json.load(f)
 
 def create_app():
     app = Flask(__name__)
@@ -21,6 +28,8 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
+
+    load_calibers()
 
     from .models import User
 
