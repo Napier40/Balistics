@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Welcome to the Ballistics App</h1>
-    <p>Please <a href="{{ url_for('auth.login') }}">log in</a> or <a href="{{ url_for('auth.register') }}">register</a> to use the advanced features of the application.</p>
-    <p>If you just want to use the basic calculator, you can <a href="{{ url_for('user_dashboard.dashboard') }}">click here</a>.</p>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Ballistics App</h1>
+        <p class="lead">Your one-stop solution for all your ballistics calculation needs.</p>
+        <hr class="my-4">
+        <p>Please log in or register to use the advanced features of the application.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('auth.login') }}" role="button">Login</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('auth.register') }}" role="button">Register</a>
+        <p class="mt-3">If you just want to use the basic calculator, you can <a href="{{ url_for('user_dashboard.dashboard') }}">click here</a>.</p>
+    </div>
 {% endblock content %}
