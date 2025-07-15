@@ -1,1 +1,1 @@
-# Flask app factory placeholder
+# Flask app factory setup
