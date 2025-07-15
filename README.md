@@ -13,14 +13,12 @@ pip install -r requirements.txt
 ```
 4️⃣ Run the database migrations:
 ```
-export FLASK_APP=run.py
 flask db init
 flask db migrate -m "Initial migration"
 flask db upgrade
 ```
 5️⃣ Create the admin user:
 ```
-export FLASK_APP=run.py
 flask create-admin
 ```
 6️⃣ Run the application:

@@ -6,8 +6,6 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from dotenv import load_dotenv
 
-load_dotenv()
-
 db = SQLAlchemy()
 migrate = Migrate()
 login_manager = LoginManager()
@@ -21,6 +19,7 @@ def load_calibers():
 
 def create_app():
     app = Flask(__name__)
+    load_dotenv()
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
