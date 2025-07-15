@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
+from flask_login import login_user, logout_user, current_user
 from app import db
 from app.models import User
 from app.forms import RegistrationForm, LoginForm
@@ -9,6 +10,8 @@ ph = PasswordHasher()
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('user_dashboard.dashboard'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = ph.hash(form.password.data)
@@ -21,13 +24,19 @@ def register():
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('user_dashboard.dashboard'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and ph.verify(user.password, form.password.data):
-            # In a real app, you would use a login manager to handle the session
-            flash('You have been logged in!', 'success')
+            login_user(user)
             return redirect(url_for('user_dashboard.dashboard'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@auth_bp.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main.landing'))
