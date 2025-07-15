@@ -19,6 +19,18 @@ def load_calibers():
     with open('calibers.json') as f:
         calibers = json.load(f)
 
+def create_admin_user():
+    from app.models import User
+    from argon2 import PasswordHasher
+    ph = PasswordHasher()
+
+    with create_app().app_context():
+        if not User.query.filter_by(username='TestJohn').first():
+            hashed_password = ph.hash('Johnston')
+            admin_user = User(username='TestJohn', password=hashed_password)
+            db.session.add(admin_user)
+            db.session.commit()
+
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -28,6 +40,10 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
+
+    with app.app_context():
+        db.create_all()
+        create_admin_user()
 
     load_calibers()
 
@@ -46,5 +62,3 @@ def create_app():
     app.register_blueprint(ballistics_bp)
     app.register_blueprint(user_dashboard_bp)
     app.register_blueprint(auth_bp)
-
-    return app
