@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome to the Ballistics App</h1>
+    <p>Please <a href="{{ url_for('auth.login') }}">log in</a> or <a href="{{ url_for('auth.register') }}">register</a> to use the advanced features of the application.</p>
+    <p>If you just want to use the basic calculator, you can <a href="{{ url_for('user_dashboard.dashboard') }}">click here</a>.</p>
+{% endblock content %}
