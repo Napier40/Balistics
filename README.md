@@ -1,32 +1,30 @@
 # Ballistics Web App PostgreSQL Deployment — Quick Reference
 
 ## Prerequisites:
-- Docker & Docker Compose installed
-- PostgreSQL service will run as container
-- SSL certificates for nginx in ./ssl/
+- Python 3.12 or higher
+- PostgreSQL
 
 ## Deployment Steps:
 1️⃣ Unzip the deployment package.
 2️⃣ Rename `.env.example` to `.env` and set your real secrets.
-3️⃣ Generate SSL certificates and place them in `ssl/` folder.
-
-Example self-signed:
+3️⃣ Install the dependencies:
 ```
-openssl req -x509 -newkey rsa:4096 -keyout ssl/key.pem -out ssl/cert.pem -days 365 -nodes
+pip install -r requirements.txt
 ```
-
-4️⃣ Build and start containers:
+4️⃣ Run the database migrations:
 ```
-docker-compose up --build
+export FLASK_APP=run.py
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
 ```
-
-5️⃣ Run PostgreSQL migrations:
+5️⃣ Run the application:
 ```
-docker-compose exec app flask db init
-docker-compose exec app flask db migrate -m "Initial migration"
-docker-compose exec app flask db upgrade
+python run.py
 ```
 
 ## Admin Access:
-- Open https://your-server-address/
-- Login with a pre-created admin user or create one using the Flask CLI.
+- Open http://localhost:5000/
+- Login with the hard-coded admin user:
+    - **Username:** TestJohn
+    - **Password:** Johnston
