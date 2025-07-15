@@ -1,1 +1,26 @@
-<!-- results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ballistics Calculator - Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Ballistics Calculator - Results</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x, y in trajectory %}
+            <tr>
+                <td>{{ "%.2f"|format(x) }}</td>
+                <td>{{ "%.2f"|format(y) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
