@@ -2,8 +2,17 @@
 {% block content %}
     <h1>Ballistics Calculator</h1>
     <form id="calculator-form" action="/calculate" method="post">
+        <label for="caliber">Caliber:</label>
+        <select id="caliber" name="caliber">
+            <option value="">Select a Caliber</option>
+            {% for caliber in calibers %}
+                <option value="{{ caliber.caliber }}">{{ caliber.caliber }}</option>
+            {% endfor %}
+        </select><br><br>
         <label for="initial_velocity">Initial Velocity (m/s):</label>
         <input type="text" id="initial_velocity" name="initial_velocity"><br><br>
+        <label for="bullet_weight">Bullet Weight (gr):</label>
+        <input type="text" id="bullet_weight" name="bullet_weight"><br><br>
         <label for="angle">Angle (degrees):</label>
         <input type="text" id="angle" name="angle"><br><br>
         <label for="latitude">Latitude (degrees):</label>
@@ -19,11 +28,23 @@
     </form>
 
     <script>
+        const caliberSelect = document.getElementById('caliber');
+        const initialVelocityInput = document.getElementById('initial_velocity');
+        const bulletWeightInput = document.getElementById('bullet_weight');
         const useWeatherCheckbox = document.getElementById('use_weather');
         const latInput = document.getElementById('lat');
         const lonInput = document.getElementById('lon');
         const calculatorForm = document.getElementById('calculator-form');
         const connectBluetoothButton = document.getElementById('connect-bluetooth');
+        const calibers = {{ calibers|tojson }};
+
+        caliberSelect.addEventListener('change', () => {
+            const selectedCaliber = calibers.find(c => c.caliber === caliberSelect.value);
+            if (selectedCaliber) {
+                initialVelocityInput.value = (selectedCaliber.muzzle_velocity.min + selectedCaliber.muzzle_velocity.max) / 2;
+                bulletWeightInput.value = (selectedCaliber.bullet_weight.min + selectedCaliber.bullet_weight.max) / 2;
+            }
+        });
 
         useWeatherCheckbox.addEventListener('change', () => {
             if (useWeatherCheckbox.checked) {
