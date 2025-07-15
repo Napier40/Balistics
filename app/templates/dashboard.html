@@ -1,1 +1,54 @@
-<!-- dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+    <h1>Ballistics Calculator</h1>
+    <form id="calculator-form" action="/calculate" method="post">
+        <label for="initial_velocity">Initial Velocity (m/s):</label>
+        <input type="text" id="initial_velocity" name="initial_velocity"><br><br>
+        <label for="angle">Angle (degrees):</label>
+        <input type="text" id="angle" name="angle"><br><br>
+        <label for="latitude">Latitude (degrees):</label>
+        <input type="text" id="latitude" name="latitude"><br><br>
+        <label for="spin_rate">Spin Rate (rad/s):</label>
+        <input type="text" id="spin_rate" name="spin_rate"><br><br>
+        <input type="checkbox" id="use_weather" name="use_weather" value="true">
+        <label for="use_weather">Use Current Weather</label><br><br>
+        <button type="button" id="connect-bluetooth">Connect to Bluetooth Weather Device</button><br><br>
+        <input type="hidden" id="lat" name="lat">
+        <input type="hidden" id="lon" name="lon">
+        <input type="submit" value="Calculate">
+    </form>
+
+    <script>
+        const useWeatherCheckbox = document.getElementById('use_weather');
+        const latInput = document.getElementById('lat');
+        const lonInput = document.getElementById('lon');
+        const calculatorForm = document.getElementById('calculator-form');
+        const connectBluetoothButton = document.getElementById('connect-bluetooth');
+
+        useWeatherCheckbox.addEventListener('change', () => {
+            if (useWeatherCheckbox.checked) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    latInput.value = position.coords.latitude;
+                    lonInput.value = position.coords.longitude;
+                });
+            }
+        });
+
+        connectBluetoothButton.addEventListener('click', async () => {
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                    filters: [{ services: ['environmental_sensing'] }]
+                });
+                const server = await device.gatt.connect();
+                const service = await server.getPrimaryService('environmental_sensing');
+                const temperatureCharacteristic = await service.getCharacteristic('temperature');
+                const temperature = await temperatureCharacteristic.readValue();
+                console.log(`Temperature: ${temperature.getUint8(0)}°C`);
+                // In a real app, you would also read other weather data,
+                // such as humidity and pressure, and send it to the server.
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    </script>
+{% endblock content %}

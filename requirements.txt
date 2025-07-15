@@ -6,3 +6,5 @@ Flask-Limiter
 argon2-cffi
 stripe
 python-dotenv
+Flask-WTF
+requests
