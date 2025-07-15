@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+argon2-cffi
+Flask-Limiter
+stripe
+python-dotenv
+Flask-Migrate
+psycopg2-binary
