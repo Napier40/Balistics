@@ -62,5 +62,3 @@ def create_app():
     app.register_blueprint(ballistics_bp)
     app.register_blueprint(user_dashboard_bp)
     app.register_blueprint(auth_bp)
-
-    return app
