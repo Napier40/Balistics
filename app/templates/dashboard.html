@@ -1,1 +1,17 @@
-<!-- dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ballistics Calculator - Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Ballistics Calculator</h1>
+    <form action="/calculate" method="post">
+        <label for="initial_velocity">Initial Velocity (m/s):</label>
+        <input type="text" id="initial_velocity" name="initial_velocity"><br><br>
+        <label for="angle">Angle (degrees):</label>
+        <input type="text" id="angle" name="angle"><br><br>
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>
